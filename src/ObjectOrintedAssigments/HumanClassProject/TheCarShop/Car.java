@@ -1,31 +1,53 @@
 package ObjectOrintedAssigments.HumanClassProject.TheCarShop;
 
+import java.util.Scanner;
+
 public class Car {
 
     String brand;
     String color;
-    String modelNumber;
+    int modelNumber;
 
-    public Car(String brand, String color, String modelNumber) {
+    public Car(String brand, String color, int modelNumber) {
        setBrand(brand);
        setColor(color);
        setModelNumber(modelNumber);
     }
 
     public void setBrand(String brand) {
-        if(CarLibrary.isBrandValid(brand)) {
-            this.brand = brand;
+        boolean e=true;
+        while (e) {
+            if (CarLibrary.isBrandValid(brand)) {
+                this.brand = brand;
+                e = false;
+            } else {
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Give a VALID car brand: ");
+                brand=scanner.nextLine();
+            }
         }
     }
 
     public void setColor(String color) {
-        if(CarLibrary.isColorValid(color)) {
-            this.color = color;
+        boolean e=true;
+        while (e) {
+            if (CarLibrary.isColorValid(color)) {
+                this.color = color;
+                e = false;
+            } else {
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Give a VALID color: ");
+                color=scanner.nextLine();
+            }
         }
     }
 
-    public void setModelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
+    public void setModelNumber(int modelNumber) {
+        if (modelNumber<=0){
+            this.modelNumber = 000001;
+        } else {
+            this.modelNumber = modelNumber;
+        }
     }
 
     public double getPrice(){
